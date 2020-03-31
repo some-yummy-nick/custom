@@ -1,0 +1,43 @@
+{
+  "name": "custom",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "gulpWatch": "gulp",
+    "gulpBuild": "gulp build",
+    "webpackWatch": "webpack --watch",
+    "webpackBuild": "webpack",
+    "watch": "set NODE_ENV=development&&npm-run-all --parallel gulpWatch webpackWatch",
+    "prettier-watch": "onchange \"src/**/*.js,src/**/*.scss\"  -- prettier --write {{changed}}",
+    "build": "set NODE_ENV=production&&npm-run-all --parallel gulpBuild webpackBuild",
+    "start": "npm-run-all --parallel watch build prettier-watch"
+  },
+  "author": "Marat",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.0",
+    "babel-loader": "8.1.0",
+    "browser-sync": "2.26.7",
+    "css-declaration-sorter": "5.1.2",
+    "css-mqpacker": "7.0.0",
+    "gulp": "4.0.2",
+    "gulp-autoprefixer": "7.0.1",
+    "gulp-clean-css": "4.3.0",
+    "gulp-if": "3.0.0",
+    "gulp-load-plugins": "2.0.2",
+    "gulp-postcss": "8.0.0",
+    "gulp-sass": "4.0.2",
+    "gulp-sass-glob": "1.1.0",
+    "gulp-sourcemaps": "2.6.5",
+    "npm-run-all": "4.1.5",
+    "onchange": "6.1.0",
+    "prettier": "2.0.2",
+    "terser-webpack-plugin": "2.3.5",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11"
+  },
+  "dependencies": {
+    "normalize.css": "8.0.1"
+  }
+}
