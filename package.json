@@ -8,7 +8,7 @@
     "webpackWatch": "webpack --watch",
     "webpackBuild": "webpack",
     "watch": "set NODE_ENV=development&&npm-run-all --parallel gulpWatch webpackWatch",
-    "prettier-watch": "onchange \"src/**/*.js,src/**/*.scss\"  -- prettier --write {{changed}}",
+    "prettier-watch": "onchange \"src/**/*.*\"  -- prettier --write {{changed}} --loglevel silent",
     "build": "set NODE_ENV=production&&npm-run-all --parallel gulpBuild webpackBuild",
     "start": "npm-run-all --parallel watch build prettier-watch"
   },
@@ -19,6 +19,7 @@
     "@babel/preset-env": "7.9.0",
     "babel-loader": "8.1.0",
     "browser-sync": "2.26.7",
+    "core-js": "2.6.11",
     "css-declaration-sorter": "5.1.2",
     "css-mqpacker": "7.0.0",
     "gulp": "4.0.2",
