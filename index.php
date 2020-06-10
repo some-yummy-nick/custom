@@ -4,13 +4,13 @@ require_once "data.php";
 
 $title = $app_name . " | Главная";
 
-$page_content = include_template("index.php");
+$content = include_template("index.php");
 $svg = include_template("common/svg.php");
 
 $layout_content = include_template(
     "layout.php",
     [
-        "content" => $page_content,
+        "content" => $content,
         "title" => $title,
         "svg"=>$svg
     ]

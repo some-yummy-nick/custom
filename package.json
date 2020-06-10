@@ -1,7 +1,5 @@
 {
-  "name": "custom",
-  "version": "1.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
     "gulpWatch": "gulp",
     "gulpBuild": "gulp build",
@@ -10,10 +8,8 @@
     "watch": "set NODE_ENV=development&&npm-run-all --parallel gulpWatch webpackWatch",
     "prettier-watch": "onchange \"src/**/*.*\"  -- prettier --write {{changed}} --loglevel silent",
     "build": "set NODE_ENV=production&&npm-run-all --parallel gulpBuild webpackBuild",
-    "start": "npm-run-all --parallel watch build prettier-watch"
+    "start": "npm-run-all --parallel watch prettier-watch"
   },
-  "author": "Marat",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.0",
