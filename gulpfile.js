@@ -1,4 +1,4 @@
-const gulp = require("gulp");
+const {src,dest,series,parallel,watch} = require("gulp");
 const cssDeclarationSorter = require("css-declaration-sorter");
 const cssMqpacker = require("css-mqpacker");
 const browserSync = require("browser-sync").create();
@@ -48,7 +48,7 @@ const sortMediaQueries = (a, b) => {
 };
 
 const styles = () =>
-    gulp.src(paths.styles.src)
+   src(paths.styles.src)
         .pipe($.if(NODE_ENV === "development", $.sourcemaps.init()))
         .pipe(
             $.sassGlob({
@@ -82,22 +82,21 @@ const styles = () =>
             ])
         )
         .pipe($.if(NODE_ENV === "development", $.sourcemaps.write("./")))
-        .pipe(gulp.dest(paths.styles.build))
+        .pipe(dest(paths.styles.build))
         .pipe(browserSync.stream());
 
-const php = () => gulp.src(paths.php.src).pipe(browserSync.stream());
+const php = () => src(paths.php.src).pipe(browserSync.stream());
 
-const watch = () => {
+const sync = () => {
     browserSync.init({
         notify: false,
         open: false,
         proxy: "custom",
-        port: 8080
     });
-    gulp.watch(paths.styles.all, styles);
-    gulp.watch("build/js/script.js").on("change", browserSync.reload);
-    gulp.watch(paths.php.all, php);
+    watch(paths.styles.all, series(styles));
+   watch("build/js/script.js").on("change", browserSync.reload);
+   watch(paths.php.all, series(php));
 };
 
-exports.default = gulp.series(styles, watch);
-exports.build = gulp.parallel(styles);
+exports.default = series(styles, sync);
+exports.build = parallel(styles);
